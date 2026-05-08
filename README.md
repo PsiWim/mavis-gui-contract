@@ -217,6 +217,8 @@ Voor de **zonder-sidebar** variant: laat `.xw-shell` + `.xw-sidebar` weg en plaa
 4. **Geen semi-transparante `rgba()` achtergronden in dark mode.** Gebruik solide hex-kleuren.
 5. **Favicons komen ALTIJD uit `/logos/favicons/<theme>-*`.** Niet zelf zoeken in `/logos/`. Brand-logo's daar zijn **geen favicons**. Vervang het hele favicon-blok in `<head>` door het juiste blok hierboven.
 
+6. **Lokale CSS-klassen mogen kleur alléén via centrale tokens zetten.** Als een app eigen klassen definieert (bv `.ac-pill`, `.foo-status`), gebruik altijd `var(--xw-status-{green,red,orange,blue,purple}-{bg,text,edge})` of `var(--xw-neutral-{bg,text,edge})` voor kleur/background/border. **Nooit** hardcoded hex/rgba in lokale CSS. **Nooit** `@media (prefers-color-scheme: light)`, `[data-theme="light"]`, `body.light` overrides voor kleur — die conflicteren met de centrale theme-toggle (`data-mode` attribuut). Centrale tokens schakelen automatisch tussen light/dark. Anti-patroon dat 3+ uur debugging kost: drie parallelle hardcoded kleur-systemen die elkaar overschrijven. Resultaat: "kleur op kleur" in light mode + rgba-strepen in dark mode.
+
 ---
 
 ## Verifieer-stap vóór oplevering
